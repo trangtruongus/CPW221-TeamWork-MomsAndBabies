@@ -11,6 +11,7 @@ This  project:
   
 ## Team Members
 [Trang Truong](https://github.com/trangtruongus)
+
 [Davis Christianson](https://github.com/davischristianson)
 
 ## Requirements
