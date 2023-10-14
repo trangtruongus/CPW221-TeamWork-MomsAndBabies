@@ -12,7 +12,7 @@ namespace CPW221_MomsAndBabies.Models
         /// The unique identifier for the Location
         /// </summary>
         [Key]
-        public int LocationId { get; set; }
+        public int LocationID { get; set; }
 
         /// <summary>
 		/// The Location's Code
