@@ -43,7 +43,7 @@ namespace CPW221_MomsAndBabies.Models
         [Display(Name = "Date Of Birth")]
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "{0} is required.")]
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         /// <summary>
         /// The Customer's Gender
