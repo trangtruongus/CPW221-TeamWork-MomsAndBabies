@@ -11,7 +11,7 @@ namespace CPW221_MomsAndBabies.Models
         /// The unique identifier for the Vendor
         /// </summary>
         [Key]
-        public int VendorId { get; set; }
+        public int VendorID { get; set; }
 
         /// <summary>
         /// The Vendor's Name
