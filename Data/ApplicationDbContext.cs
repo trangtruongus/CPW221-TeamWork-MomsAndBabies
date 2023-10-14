@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CPW221_MomsAndBabies.Models;
 
 namespace CPW221_MomsAndBabies.Data
 {
@@ -9,5 +10,6 @@ namespace CPW221_MomsAndBabies.Data
             : base(options)
         {
         }
+        public DbSet<CPW221_MomsAndBabies.Models.Customer> Customer { get; set; } = default!;
     }
 }
