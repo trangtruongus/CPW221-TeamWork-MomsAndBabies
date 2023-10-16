@@ -63,7 +63,7 @@ namespace CPW221_MomsAndBabies.Models
         /// The Customer's Email Address
         /// </summary>
         [StringLength(100)]
-        [Display(Name = "Customer's Email")]
+        [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Invalid email address.")]
         //[Required(ErrorMessage = "{0} is required.")]
         public string? Email { get; set; } // Should be required?
