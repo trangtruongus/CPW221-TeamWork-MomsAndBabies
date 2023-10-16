@@ -12,7 +12,7 @@ namespace CPW221_MomsAndBabies.Models
         /// The unique identifier for the Customer
         /// </summary>
         [Key]
-        public int CustomerId { get; set; }
+        public int CustomerID { get; set; }
 
         /// <summary>
 		/// The Customer's First Name
