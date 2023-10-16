@@ -43,7 +43,7 @@ namespace CPW221_MomsAndBabies.Models
         /// The Location's City
         /// </summary>
         [Display(Name = "City")]
-        [StringLength(100)]
+        [StringLength(50)]
         [Required(ErrorMessage = "{0} is required.")]
         public string City { get; set; }
 
