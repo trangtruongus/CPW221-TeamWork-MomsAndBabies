@@ -36,7 +36,7 @@ namespace CPW221_MomsAndBabies.Controllers
             }
 
             var customer = await _context.Customer
-                .FirstOrDefaultAsync(m => m.CustomerId == id);
+                .FirstOrDefaultAsync(m => m.CustomerID == id);
             if (customer == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace CPW221_MomsAndBabies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,FirstName,MiddleName,LastName,DateOfBirth,Gender,PhoneNumber,Email")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerID,FirstName,MiddleName,LastName,DateOfBirth,Gender,PhoneNumber,Email")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -88,9 +88,9 @@ namespace CPW221_MomsAndBabies.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CustomerId,FirstName,MiddleName,LastName,DateOfBirth,Gender,PhoneNumber,Email")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerID,FirstName,MiddleName,LastName,DateOfBirth,Gender,PhoneNumber,Email")] Customer customer)
         {
-            if (id != customer.CustomerId)
+            if (id != customer.CustomerID)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace CPW221_MomsAndBabies.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CustomerExists(customer.CustomerId))
+                    if (!CustomerExists(customer.CustomerID))
                     {
                         return NotFound();
                     }
@@ -127,7 +127,7 @@ namespace CPW221_MomsAndBabies.Controllers
             }
 
             var customer = await _context.Customer
-                .FirstOrDefaultAsync(m => m.CustomerId == id);
+                .FirstOrDefaultAsync(m => m.CustomerID == id);
             if (customer == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace CPW221_MomsAndBabies.Controllers
 
         private bool CustomerExists(int id)
         {
-          return (_context.Customer?.Any(e => e.CustomerId == id)).GetValueOrDefault();
+          return (_context.Customer?.Any(e => e.CustomerID == id)).GetValueOrDefault();
         }
     }
 }

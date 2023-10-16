@@ -27,7 +27,7 @@ namespace CPW221_MomsAndBabies.Models
         /// The Customer's Middle Name
         /// </summary>
         [StringLength(50)]
-        [Display(Name = "Middle Name (Optional)")]
+        [Display(Name = "Middle Name")]
         public string? MiddleName { get; set; }
 
         /// <summary>
