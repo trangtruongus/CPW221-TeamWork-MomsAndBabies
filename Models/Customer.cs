@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
 namespace CPW221_MomsAndBabies.Models
@@ -48,7 +49,7 @@ namespace CPW221_MomsAndBabies.Models
         /// <summary>
         /// The Customer's Gender
         /// </summary>
-        public string Gender { get; set; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// The Customer's Phone Number
@@ -68,5 +69,14 @@ namespace CPW221_MomsAndBabies.Models
         public string? Email { get; set; } // Should be required?
 
         // Customer's Address needed?
+    }
+
+    public enum Gender
+    {
+        Male,
+        Female,
+        Other,
+        [Description("Prefer Not To Say")]
+        PreferNotToSay
     }
 }
