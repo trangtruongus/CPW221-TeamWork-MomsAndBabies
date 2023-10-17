@@ -76,7 +76,7 @@ namespace CPW221_MomsAndBabies.Models
         Male,
         Female,
         Other,
-        [Description("Prefer Not To Say")]
+        [Display(Name = "Prefer Not To Say")]
         PreferNotToSay
     }
 }
