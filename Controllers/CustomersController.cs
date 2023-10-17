@@ -62,6 +62,10 @@ namespace CPW221_MomsAndBabies.Controllers
             {
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
+
+                // Show success message
+                ViewData["Message"] = $"{customer.LastName}, {customer.FirstName} has been added successfully!";
+
                 return RedirectToAction(nameof(Index));
             }
             return View(customer);
