@@ -1,5 +1,9 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 using System.Xml.Linq;
 
 namespace CPW221_MomsAndBabies.Models
@@ -73,8 +77,11 @@ namespace CPW221_MomsAndBabies.Models
 
     public enum Gender
     {
+        [Display(Name = "Male")]
         Male,
+        [Display(Name = "Female")]
         Female,
+        [Display(Name = "Other")]
         Other,
         [Display(Name = "Prefer Not To Say")]
         PreferNotToSay
