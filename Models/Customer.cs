@@ -84,7 +84,7 @@ namespace CPW221_MomsAndBabies.Models
                 new SelectListItem { Value = "Male", Text = "Male" },
                 new SelectListItem { Value = "Female", Text = "Female" },
                 new SelectListItem { Value = "Other", Text = "Other" },
-                new SelectListItem { Value = "PreferNotToSay", Text = "Prefer Not To Say" }
+                new SelectListItem { Value = "Prefer Not To Say", Text = "Prefer Not To Say" }
             };
         }
     }
