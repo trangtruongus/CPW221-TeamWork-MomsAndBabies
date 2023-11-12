@@ -48,7 +48,9 @@ namespace CPW221_MomsAndBabies.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new Customer(); // or retrieve it from a service or database
+            return View(model);
+
         }
 
         // POST: Customers/Create
@@ -70,6 +72,8 @@ namespace CPW221_MomsAndBabies.Controllers
             }
             return View(customer);
         }
+
+        
 
         // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(int? id)

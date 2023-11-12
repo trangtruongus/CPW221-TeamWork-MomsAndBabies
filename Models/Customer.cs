@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -53,7 +54,9 @@ namespace CPW221_MomsAndBabies.Models
         /// <summary>
         /// The Customer's Gender
         /// </summary>
-        public Gender Gender { get; set; }
+        [Display(Name = "Gender")]
+        [Required(ErrorMessage = "{0} is required.")]
+        public string Gender { get; set; }
 
         /// <summary>
         /// The Customer's Phone Number
@@ -73,17 +76,32 @@ namespace CPW221_MomsAndBabies.Models
         public string? Email { get; set; } // Should be required?
 
         // Customer's Address needed?
+
+        public List<SelectListItem> GetGenderSelectList()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Male", Text = "Male" },
+                new SelectListItem { Value = "Female", Text = "Female" },
+                new SelectListItem { Value = "Other", Text = "Other" },
+                new SelectListItem { Value = "PreferNotToSay", Text = "Prefer Not To Say" }
+            };
+        }
     }
 
+    
+
+    /*
     public enum Gender
     {
         [Display(Name = "Male")]
-        Male,
+        Male = 1,
         [Display(Name = "Female")]
-        Female,
+        Female = 2,
         [Display(Name = "Other")]
-        Other,
+        Other = 3,
         [Display(Name = "Prefer Not To Say")]
-        PreferNotToSay
+        PreferNotToSay = 4
     }
+    */
 }
