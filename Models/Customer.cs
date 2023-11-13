@@ -1,4 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 using System.Xml.Linq;
 
 namespace CPW221_MomsAndBabies.Models
@@ -26,7 +32,7 @@ namespace CPW221_MomsAndBabies.Models
         /// The Customer's Middle Name
         /// </summary>
         [StringLength(50)]
-        [Display(Name = "Middle Name (Optional)")]
+        [Display(Name = "Middle Name")]
         public string? MiddleName { get; set; }
 
         /// <summary>
@@ -43,11 +49,13 @@ namespace CPW221_MomsAndBabies.Models
         [Display(Name = "Date Of Birth")]
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "{0} is required.")]
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         /// <summary>
         /// The Customer's Gender
         /// </summary>
+        [Display(Name = "Gender")]
+        [Required(ErrorMessage = "{0} is required.")]
         public string Gender { get; set; }
 
         /// <summary>
@@ -62,11 +70,38 @@ namespace CPW221_MomsAndBabies.Models
         /// The Customer's Email Address
         /// </summary>
         [StringLength(100)]
-        [Display(Name = "Customer's Email")]
+        [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Invalid email address.")]
         //[Required(ErrorMessage = "{0} is required.")]
         public string? Email { get; set; } // Should be required?
 
         // Customer's Address needed?
+
+        public List<SelectListItem> GetGenderSelectList()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Value = "Male", Text = "Male" },
+                new SelectListItem { Value = "Female", Text = "Female" },
+                new SelectListItem { Value = "Other", Text = "Other" },
+                new SelectListItem { Value = "Prefer Not To Say", Text = "Prefer Not To Say" }
+            };
+        }
     }
+
+    
+
+    /*
+    public enum Gender
+    {
+        [Display(Name = "Male")]
+        Male = 1,
+        [Display(Name = "Female")]
+        Female = 2,
+        [Display(Name = "Other")]
+        Other = 3,
+        [Display(Name = "Prefer Not To Say")]
+        PreferNotToSay = 4
+    }
+    */
 }
