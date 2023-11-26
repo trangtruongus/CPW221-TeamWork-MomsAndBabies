@@ -10,6 +10,6 @@ namespace CPW221_MomsAndBabies.Data
             : base(options)
         {
         }
-        public DbSet<CPW221_MomsAndBabies.Models.Customer> Customer { get; set; } = default!;
+        public DbSet<Customer> Customer { get; set; } = default!;
     }
 }
