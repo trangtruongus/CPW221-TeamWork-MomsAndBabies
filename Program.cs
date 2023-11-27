@@ -16,6 +16,11 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+// Migrate the database on startup. 
+using IServiceScope scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+db.Database.Migrate();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
