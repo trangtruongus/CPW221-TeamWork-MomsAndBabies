@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CPW221_MomsAndBabies.Data;
 using CPW221_MomsAndBabies.Models;
+using CPW221_MomsAndBabies.Migrations;
 
 namespace CPW221_MomsAndBabies.Controllers
 {
@@ -62,7 +63,11 @@ namespace CPW221_MomsAndBabies.Controllers
             {
                 _context.Add(vendor);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                // Show success message
+                ViewData["Message"] = $"{vendor.VendorName} has been added successfully!";
+
+                return View();
             }
             return View(vendor);
         }
@@ -97,22 +102,10 @@ namespace CPW221_MomsAndBabies.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(vendor);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!VendorExists(vendor.VendorID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(vendor);
+                await _context.SaveChangesAsync();
+
+                TempData["Message"] = $"{vendor.VendorName} was updated successfully!";
                 return RedirectToAction(nameof(Index));
             }
             return View(vendor);
@@ -149,9 +142,16 @@ namespace CPW221_MomsAndBabies.Controllers
             if (vendor != null)
             {
                 _context.Vendor.Remove(vendor);
+                await _context.SaveChangesAsync();
+
+                TempData["Message"] = $"{vendor.VendorName} was deleted successfully!";
             }
-            
-            await _context.SaveChangesAsync();
+            else
+            {
+                TempData["Message"] = $"This vendor was already deleted!";
+            }
+
+
             return RedirectToAction(nameof(Index));
         }
 

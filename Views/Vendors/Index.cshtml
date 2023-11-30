@@ -1,11 +1,22 @@
-﻿@model IEnumerable<CPW221_MomsAndBabies.Models.Vendor>
+﻿@model IEnumerable<Vendor>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Vendor</h1>
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["Message"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+else
+{
+
+}
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -49,9 +60,9 @@
                 @Html.DisplayFor(modelItem => item.VendorContactLastName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.VendorID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.VendorID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.VendorID">Delete</a>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.VendorID">Edit</a>
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.VendorID">Details</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.VendorID">Delete</a>
             </td>
         </tr>
 }
