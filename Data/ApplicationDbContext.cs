@@ -12,5 +12,6 @@ namespace CPW221_MomsAndBabies.Data
         }
         public DbSet<CPW221_MomsAndBabies.Models.Customer> Customer { get; set; } = default!;
         public DbSet<CPW221_MomsAndBabies.Models.Location> Location { get; set; } = default!;
+        public DbSet<CPW221_MomsAndBabies.Models.Vendor> Vendor { get; set; } = default!;
     }
 }
