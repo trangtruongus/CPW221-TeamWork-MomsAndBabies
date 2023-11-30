@@ -1,4 +1,4 @@
-﻿@model CPW221_MomsAndBabies.Models.Location
+﻿@model Location
 
 @{
     ViewData["Title"] = "Edit";
@@ -35,7 +35,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="State" class="control-label"></label>
-                <input asp-for="State" class="form-control" />
+                @{
+                    var stateSelectList = Model?.GetStateSelectList() ?? new List<SelectListItem>();
+                    var locationState = ViewData["CustomerGender"] as string;
+                }
+                <select asp-for="State" asp-items="stateSelectList" class="form-control">
+                    <option value="">Select State</option>
+                    @foreach (var stateOption in stateSelectList)
+                    {
+                        if (locationState == stateOption.Value)
+                        {
+                            <option value="@stateOption.Value" selected>@stateOption.Text</option>
+                        }
+
+                    }
+                </select>
                 <span asp-validation-for="State" class="text-danger"></span>
             </div>
             <div class="form-group">

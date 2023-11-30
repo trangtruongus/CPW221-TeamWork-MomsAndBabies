@@ -34,24 +34,24 @@
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
-            <label asp-for="Gender" class="control-label"></label>
-            @{
-                var genderSelectList = Model?.GetGenderSelectList() ?? new List<SelectListItem>();
-                var customerGender = ViewData["CustomerGender"] as string;
-            }
-            <select asp-for="Gender" asp-items="genderSelectList" class="form-control">
-                <option value="">Select Gender</option>
-                    @foreach (var genderOption in genderSelectList)
-                    {
-                        if (customerGender == genderOption.Value)
+                <label asp-for="Gender" class="control-label"></label>
+                @{
+                    var genderSelectList = Model?.GetGenderSelectList() ?? new List<SelectListItem>();
+                    var customerGender = ViewData["CustomerGender"] as string;
+                }
+                <select asp-for="Gender" asp-items="genderSelectList" class="form-control">
+                    <option value="">Select Gender</option>
+                        @foreach (var genderOption in genderSelectList)
                         {
-                            <option value="@genderOption.Value" selected>@genderOption.Text</option>
-                        }
+                            if (customerGender == genderOption.Value)
+                            {
+                                <option value="@genderOption.Value" selected>@genderOption.Text</option>
+                            }
                        
-                    }
-    </select>
-    <span asp-validation-for="Gender" class="text-danger"></span>
-</div>
+                        }
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="PhoneNumber" class="control-label"></label>
                 <input asp-for="PhoneNumber" class="form-control" />
