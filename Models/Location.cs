@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
@@ -62,114 +63,65 @@ namespace CPW221_MomsAndBabies.Models
         [Required(ErrorMessage = "{0} is required.")]
         public string ZipCode { get; set; }
 
-        // State Abbreviations or Full State Names?
-        // Dropdown list for State?
-        // Use enum for State?
-    }
+        public List<SelectListItem> GetStateSelectList()
+        {
+            var states = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "AL", Text = "Alabama" },
+                new SelectListItem { Value = "AK", Text = "Alaska" },
+                new SelectListItem { Value = "AZ", Text = "Arizona" },
+                new SelectListItem { Value = "AR", Text = "Arkansas" },
+                new SelectListItem { Value = "CA", Text = "California" },
+                new SelectListItem { Value = "CO", Text = "Colorado" },
+                new SelectListItem { Value = "CT", Text = "Connecticut" },
+                new SelectListItem { Value = "DE", Text = "Delaware" },
+                new SelectListItem { Value = "DC", Text = "District of Columbia" },
+                new SelectListItem { Value = "FL", Text = "Florida" },
+                new SelectListItem { Value = "GA", Text = "Georgia" },
+                new SelectListItem { Value = "HI", Text = "Hawaii" },
+                new SelectListItem { Value = "ID", Text = "Idaho" },
+                new SelectListItem { Value = "IL", Text = "Illinois" },
+                new SelectListItem { Value = "IN", Text = "Indiana" },
+                new SelectListItem { Value = "IA", Text = "Iowa" },
+                new SelectListItem { Value = "KS", Text = "Kansas" },
+                new SelectListItem { Value = "KY", Text = "Kentucky" },
+                new SelectListItem { Value = "LA", Text = "Louisiana" },
+                new SelectListItem { Value = "ME", Text = "Maine" },
+                new SelectListItem { Value = "MD", Text = "Maryland" },
+                new SelectListItem { Value = "MA", Text = "Massachusetts" },
+                new SelectListItem { Value = "MI", Text = "Michigan" },
+                new SelectListItem { Value = "MN", Text = "Minnesota" },
+                new SelectListItem { Value = "MS", Text = "Mississippi" },
+                new SelectListItem { Value = "MO", Text = "Missouri" },
+                new SelectListItem { Value = "MT", Text = "Montana" },
+                new SelectListItem { Value = "NE", Text = "Nebraska" },
+                new SelectListItem { Value = "NV", Text = "Nevada" },
+                new SelectListItem { Value = "NH", Text = "New Hampshire" },
+                new SelectListItem { Value = "NJ", Text = "New Jersey" },
+                new SelectListItem { Value = "NM", Text = "New Mexico" },
+                new SelectListItem { Value = "NY", Text = "New York" },
+                new SelectListItem { Value = "NC", Text = "North Carolina" },
+                new SelectListItem { Value = "ND", Text = "North Dakota" },
+                new SelectListItem { Value = "OH", Text = "Ohio" },
+                new SelectListItem { Value = "OK", Text = "Oklahoma" },
+                new SelectListItem { Value = "OR", Text = "Oregon" },
+                new SelectListItem { Value = "PA", Text = "Pennsylvania" },
+                new SelectListItem { Value = "RI", Text = "Rhode Island" },
+                new SelectListItem { Value = "SC", Text = "South Carolina" },
+                new SelectListItem { Value = "SD", Text = "South Dakota" },
+                new SelectListItem { Value = "TN", Text = "Tennessee" },
+                new SelectListItem { Value = "TX", Text = "Texas" },
+                new SelectListItem { Value = "UT", Text = "Utah" },
+                new SelectListItem { Value = "VT", Text = "Vermont" },
+                new SelectListItem { Value = "VA", Text = "Virginia" },
+                new SelectListItem { Value = "WA", Text = "Washington" },
+                new SelectListItem { Value = "WV", Text = "West Virginia" },
+                new SelectListItem { Value = "WI", Text = "Wisconsin" },
+                new SelectListItem { Value = "WY", Text = "Wyoming" },
+            };
 
-    public enum State
-    {
-        [Display(Name = "Alabama")]
-        AL,
-        [Display(Name = "Alaska")]
-        AK,
-        [Display(Name = "Arkansas")]
-        AR,
-        [Display(Name = "Arizona")]
-        AZ,
-        [Display(Name = "California")]
-        CA,
-        [Display(Name = "Colorado")]
-        CO,
-        [Display(Name = "Connecticut")]
-        CT,
-        [Display(Name = "District of Columbia")]
-        DC,
-        [Display(Name = "Delaware")]
-        DE,
-        [Display(Name = "Florida")]
-        FL,
-        [Display(Name = "Georgia")]
-        GA,
-        [Display(Name = "Hawaii")]
-        HI,
-        [Display(Name = "Iowa")]
-        IA,
-        [Display(Name = "Idaho")]
-        ID,
-        [Display(Name = "Illinois")]
-        IL,
-        [Display(Name = "Indiana")]
-        IN,
-        [Display(Name = "Kansas")]
-        KS,
-        [Display(Name = "Kentucky")]
-        KY,
-        [Display(Name = "Louisiana")]
-        LA,
-        [Display(Name = "Massachusetts")]
-        MA,
-        [Display(Name = "Maryland")]
-        MD,
-        [Display(Name = "Maine")]
-        ME,
-        [Display(Name = "Michigan")]
-        MI,
-        [Display(Name = "Minnesota")]
-        MN,
-        [Display(Name = "Missouri")]
-        MO,
-        [Display(Name = "Mississippi")]
-        MS,
-        [Display(Name = "Montana")]
-        MT,
-        [Display(Name = "North Carolina")]
-        NC,
-        [Display(Name = "North Dakota")]
-        ND,
-        [Display(Name = "Nebraska")]
-        NE,
-        [Display(Name = "New Hampshire")]
-        NH,
-        [Display(Name = "New Jersey")]
-        NJ,
-        [Display(Name = "New Mexico")]
-        NM,
-        [Display(Name = "Nevada")]
-        NV,
-        [Display(Name = "New York")]
-        NY,
-        [Display(Name = "Oklahoma")]
-        OK,
-        [Display(Name = "Ohio")]
-        OH,
-        [Display(Name = "Oregon")]
-        OR,
-        [Display(Name = "Pennsylvania")]
-        PA,
-        [Display(Name = "Rhode Island")]
-        RI,
-        [Display(Name = "South Carolina")]
-        SC,
-        [Display(Name = "South Dakota")]
-        SD,
-        [Display(Name = "Tennessee")]
-        TN,
-        [Display(Name = "Texas")]
-        TX,
-        [Display(Name = "Utah")]
-        UT,
-        [Display(Name = "Virginia")]
-        VA,
-        [Display(Name = "Vermont")]
-        VT,
-        [Display(Name = "Washington")]
-        WA,
-        [Display(Name = "Wisconsin")]
-        WI,
-        [Display(Name = "West Virginia")]
-        WV,
-        [Display(Name = "Wyoming")]
-        WY
+            return states;
+        }
     }
+        
 }

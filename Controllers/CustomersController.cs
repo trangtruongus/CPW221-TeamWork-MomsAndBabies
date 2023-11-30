@@ -90,7 +90,7 @@ namespace CPW221_MomsAndBabies.Controllers
                 return NotFound();
             }
 
-            var customerGender = customer.Gender;
+            // var customerGender = customer.Gender;
             return View(customer);
         }
 
