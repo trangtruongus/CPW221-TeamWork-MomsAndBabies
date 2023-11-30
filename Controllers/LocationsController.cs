@@ -139,13 +139,20 @@ namespace CPW221_MomsAndBabies.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Location'  is null.");
             }
-            var location = await _context.Location.FindAsync(id);
+            Location? location = await _context.Location.FindAsync(id);
             if (location != null)
             {
                 _context.Location.Remove(location);
+                await _context.SaveChangesAsync();
+
+                TempData["Message"] = $"{location.LocationName} was deleted successfully!";
             }
-            
-            await _context.SaveChangesAsync();
+            else
+            {
+                TempData["Message"] = $"This location was already deleted!";
+            }
+
+
             return RedirectToAction(nameof(Index));
         }
 
