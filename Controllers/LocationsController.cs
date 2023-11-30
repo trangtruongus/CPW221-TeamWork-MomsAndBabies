@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CPW221_MomsAndBabies.Data;
 using CPW221_MomsAndBabies.Models;
+using CPW221_MomsAndBabies.Migrations;
 
 namespace CPW221_MomsAndBabies.Controllers
 {
@@ -48,7 +49,8 @@ namespace CPW221_MomsAndBabies.Controllers
         // GET: Locations/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new Location();
+            return View(model);
         }
 
         // POST: Locations/Create
@@ -62,7 +64,11 @@ namespace CPW221_MomsAndBabies.Controllers
             {
                 _context.Add(location);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                // Show success message
+                ViewData["Message"] = $"{location.LocationName} has been added successfully!";
+
+                return View();
             }
             return View(location);
         }
@@ -97,22 +103,10 @@ namespace CPW221_MomsAndBabies.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(location);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!LocationExists(location.LocationID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(location);
+                await _context.SaveChangesAsync();
+
+                TempData["Message"] = $"{location.LocationName} was updated successfully!";
                 return RedirectToAction(nameof(Index));
             }
             return View(location);
