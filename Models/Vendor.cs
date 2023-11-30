@@ -19,7 +19,7 @@ namespace CPW221_MomsAndBabies.Models
         [Display(Name = "Vendor Name")]
         [StringLength(50)]
         [Required(ErrorMessage = "{0} is required.")]
-        public DateOnly VendorName { get; set; }
+        public string VendorName { get; set; }
 
         /// <summary>
         /// The Vendor's Phone Number
